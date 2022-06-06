@@ -7,14 +7,12 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
     public class VehiclesCheatProvider : ICheatProvider
     {
         private readonly Mafi.Lazy<Lyst<CheatItem>> _lazyCheats;
-        private readonly ProtosDb _protosDb;
         private readonly IVehiclesManager _vehiclesManager;
 
 
-        public VehiclesCheatProvider(VehiclesManager VehiclesManager, ProtosDb protosDb)
+        public VehiclesCheatProvider(VehiclesManager vehiclesManager)
         {
-            _vehiclesManager = VehiclesManager;
-            _protosDb = protosDb;
+            _vehiclesManager = vehiclesManager;
             _lazyCheats = new Mafi.Lazy<Lyst<CheatItem>>(GetCheats);
         }
 
