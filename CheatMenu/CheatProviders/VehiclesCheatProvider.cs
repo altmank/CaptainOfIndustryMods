@@ -17,6 +17,7 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
             _protosDb = protosDb;
             _lazyCheats = new Mafi.Lazy<Lyst<CheatItem>>(GetCheats);
         }
+
         public Lyst<CheatItem> Cheats => _lazyCheats.Value;
 
         private Lyst<CheatItem> GetCheats()
@@ -26,33 +27,32 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
                 new CheatItem
                 {
                     Title = "Vehicle Limit Add 100",
-                UsingReflection = false,
-                // Sometimes the devs make it easier than others!
-                Action = () => _vehiclesManager.IncreaseVehicleLimit(100),
+                    UsingReflection = false,
+                    // Sometimes the devs make it easier than others!
+                    Action = () => _vehiclesManager.IncreaseVehicleLimit(100),
                 },
-                 new CheatItem
+                new CheatItem
                 {
                     Title = "Vehicle Limit Remove 100",
-                UsingReflection = false,
-                // Sometimes the devs make it easier than others!
-                Action = () => _vehiclesManager.IncreaseVehicleLimit(-100),
+                    UsingReflection = false,
+                    // Sometimes the devs make it easier than others!
+                    Action = () => _vehiclesManager.IncreaseVehicleLimit(-100),
                 },
-                  new CheatItem
+                new CheatItem
                 {
                     Title = "Vehicle Limit Add 10",
-                UsingReflection = false,
-                // Sometimes the devs make it easier than others!
-                Action = () => _vehiclesManager.IncreaseVehicleLimit(10),
+                    UsingReflection = false,
+                    // Sometimes the devs make it easier than others!
+                    Action = () => _vehiclesManager.IncreaseVehicleLimit(10),
                 },
-                 new CheatItem
+                new CheatItem
                 {
                     Title = "Vehicle Limit Remove 10",
-                UsingReflection = false,
-                // Sometimes the devs make it easier than others!
-                Action = () => _vehiclesManager.IncreaseVehicleLimit(-10),
+                    UsingReflection = false,
+                    // Sometimes the devs make it easier than others!
+                    Action = () => _vehiclesManager.IncreaseVehicleLimit(-10),
                 },
             };
-
         }
     }
 }
