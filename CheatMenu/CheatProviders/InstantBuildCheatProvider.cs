@@ -47,7 +47,7 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
                 new CheatItem
                 {
                     Title = "Toggle Instant Build",
-                    UsingReflection = false,
+                    UsingReflection = true,
                     Action = () =>
                     {
                         SetInstantBuildAccessors();
