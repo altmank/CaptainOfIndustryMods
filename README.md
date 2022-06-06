@@ -9,3 +9,5 @@ You can download the mods archive from the GitHub Release section and you need t
 ## Cheat menu
 
 That mod will gives you access to a menu exposing some cheats. Hit the F8 key to open the menu while inside a game.
+
+NOTE: THIS IS A FORK OF THE ORIGINAL AND UNDER ACTIVE DEVELOPMENT TO ADD NEW CHEATS. IT MAY BE UNSTABLE.
