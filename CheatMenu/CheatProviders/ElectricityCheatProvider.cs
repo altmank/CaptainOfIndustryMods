@@ -9,7 +9,7 @@ using Mafi.Core.Utils;
 
 namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
 {
-    public class FreeElectricityCheatProvider : ICheatProvider
+    public class ElectricityCheatProvider : ICheatProvider
     {
         private readonly IElectricityManager _electricityManager;
         private readonly Mafi.Lazy<Lyst<CheatItem>> _lazyCheats;
@@ -31,7 +31,7 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
         }
 
 
-        public FreeElectricityCheatProvider(IElectricityManager electricityManager)
+        public ElectricityCheatProvider(IElectricityManager electricityManager)
         {
             _electricityManager = electricityManager;
             _lazyCheats = new Mafi.Lazy<Lyst<CheatItem>>(GetCheats);
