@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using Mafi;
+using CaptainOfIndustryMods.CheatMenu.Logging;
 using Mafi.Collections;
 using Mafi.Core;
-using Mafi.Core.Buildings.Settlements;
 using Mafi.Core.Utils;
 
 namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
@@ -25,8 +24,8 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
             var instantBuildManager = typeof(CoreMod).Assembly.GetType("Mafi.Core.Utils.InstaBuildManager");
             if (instantBuildManager is null)
             {
-                Log.Info("*** CheatMenu ERROR *** Unable to fetch the InstaBuildManager type.");
-                throw new Exception("*** CheatMenu ERROR *** Unable to fetch the InstaBuildManager type.");
+                CheatMenuLogger.Log.Error("Unable to fetch the InstaBuildManager type.");
+                throw new Exception("Unable to fetch the InstaBuildManager type.");
             }
 
             _instantBuildProperty = instantBuildManager.GetField("<IsInstaBuildEnabled>k__BackingField",
@@ -44,18 +43,21 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
         {
             return new Lyst<CheatItem>
             {
-                new CheatItem
+                new CheatItem(
+                    "Toggle Instant Mode",
+                    ToggleInstantMode,
+                    true
+                )
                 {
-                    Title = "Toggle Instant Build",
-                    UsingReflection = true,
-                    Action = () =>
-                    {
-                        SetInstantBuildAccessors();
-                        _instantBuildProperty.SetValue(_instaBuildManager,
-                            !(bool)_instantBuildProperty.GetValue(_instaBuildManager));
-                    }
+                    Tooltip = "Enables instant build, instant research, instant upgrades (shipyards, buildings, settlements, mines), instant vehicle construction, and instant repair."
                 }
             };
+        }
+
+        private void ToggleInstantMode()
+        {
+            SetInstantBuildAccessors();
+            _instantBuildProperty.SetValue(_instaBuildManager, !(bool)_instantBuildProperty.GetValue(_instaBuildManager));
         }
     }
 }

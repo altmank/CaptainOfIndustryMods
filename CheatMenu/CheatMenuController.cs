@@ -23,7 +23,7 @@ namespace CaptainOfIndustryMods.CheatMenu
         {
             DeactivateOnOtherControllerActive = true,
             DeactivateOnNonUiClick = true,
-            AllowInspectorCursor = false,
+            AllowInspectorCursor = false
         };
 
         public void Activate()

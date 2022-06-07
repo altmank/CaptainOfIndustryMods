@@ -4,8 +4,17 @@ namespace CaptainOfIndustryMods.CheatMenu
 {
     public class CheatItem
     {
-        public string Title { get; set; }
-        public Action Action { get; set; }
-        public bool UsingReflection { get; set; }
+        public CheatItem(string title, Action action, bool isToggle = false)
+        {
+            Title = title;
+            Action = action;
+            IsToggle = isToggle;
+        }
+
+        public string Title { get; }
+        public Action Action { get; }
+        public bool IsToggle { get; }
+        public string Tooltip { get; set; }
+        
     }
 }

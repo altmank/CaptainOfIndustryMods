@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using Mafi;
+using CaptainOfIndustryMods.CheatMenu.Logging;
 using Mafi.Base;
 using Mafi.Collections;
 using Mafi.Core;
@@ -32,8 +32,8 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
             var weatherManagerType = typeof(CoreMod).Assembly.GetType("Mafi.Core.Environment.WeatherManager");
             if (weatherManagerType is null)
             {
-                Log.Info("*** CheatMenu ERROR *** Unable to fetch the WeatherManager type.");
-                throw new Exception("*** CheatMenu ERROR *** Unable to fetch the WeatherManager type.");
+                CheatMenuLogger.Log.Error("Unable to fetch the WeatherManager type.");
+                throw new Exception("Unable to fetch the WeatherManager type.");
             }
 
             _currentWeatherProperty = weatherManagerType.GetProperty("CurrentWeather");
@@ -45,67 +45,49 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
         {
             return new Lyst<CheatItem>
             {
-                new CheatItem
-                {
-                    Title = "Reset weather",
-                    Action = () =>
+                new CheatItem(
+                    "Reset weather",
+                    () =>
                     {
                         SetWeatherAccessors();
-                        _currentWeatherProperty.SetValue(_weatherManager,
-                            _protosDb.First<WeatherProto>(x => x.Id == Ids.Weather.Sunny).Value);
-                        _overrideDurationField.SetValue(_weatherManager, 0);
-                    },
-                    UsingReflection = true,
-                },
-                new CheatItem
-                {
-                    Title = "Sunny weather",
-                    Action = () =>
+                        SetWeather(Ids.Weather.Sunny, true);
+                    }),
+                new CheatItem(
+                    "Sunny weather",
+                    () =>
                     {
                         SetWeatherAccessors();
-                        _currentWeatherProperty.SetValue(_weatherManager,
-                            _protosDb.First<WeatherProto>(x => x.Id == Ids.Weather.Sunny).Value);
-                        _overrideDurationField.SetValue(_weatherManager, int.MaxValue);
-                    },
-                    UsingReflection = true,
-                },
-                new CheatItem
-                {
-                    Title = "Cloudy weather",
-                    Action = () =>
+                        SetWeather(Ids.Weather.Sunny);
+                    }),
+                new CheatItem(
+                    "Cloudy weather",
+                    () =>
                     {
                         SetWeatherAccessors();
-                        _currentWeatherProperty.SetValue(_weatherManager,
-                            _protosDb.First<WeatherProto>(x => x.Id == Ids.Weather.Cloudy).Value);
-                        _overrideDurationField.SetValue(_weatherManager, int.MaxValue);
-                    },
-                    UsingReflection = true,
-                },
-                new CheatItem
-                {
-                    Title = "Rainy weather",
-                    Action = () =>
+                        SetWeather(Ids.Weather.Cloudy);
+                    }),
+
+                new CheatItem(
+                    "Rainy weather",
+                    () =>
                     {
                         SetWeatherAccessors();
-                        _currentWeatherProperty.SetValue(_weatherManager,
-                            _protosDb.First<WeatherProto>(x => x.Id == Ids.Weather.Rainy).Value);
-                        _overrideDurationField.SetValue(_weatherManager, int.MaxValue);
-                    },
-                    UsingReflection = true,
-                },
-                new CheatItem
-                {
-                    Title = "Heavy rain weather",
-                    Action = () =>
+                        SetWeather(Ids.Weather.Rainy);
+                    }),
+                new CheatItem(
+                    "Heavy rain weather",
+                    () =>
                     {
                         SetWeatherAccessors();
-                        _currentWeatherProperty.SetValue(_weatherManager,
-                            _protosDb.First<WeatherProto>(x => x.Id == Ids.Weather.HeavyRain).Value);
-                        _overrideDurationField.SetValue(_weatherManager, int.MaxValue);
-                    },
-                    UsingReflection = true,
-                },
+                        SetWeather(Ids.Weather.HeavyRain);
+                    })
             };
+        }
+
+        private void SetWeather(Proto.ID weatherTypeId, bool reset = false)
+        {
+            _currentWeatherProperty.SetValue(_weatherManager, _protosDb.First<WeatherProto>(x => x.Id == weatherTypeId).Value);
+            _overrideDurationField.SetValue(_weatherManager, reset ? 0 : int.MaxValue);
         }
     }
 }
