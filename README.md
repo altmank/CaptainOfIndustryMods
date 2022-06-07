@@ -4,7 +4,7 @@ This project is more of a reverse engineering exercise than an ongoing mod proje
 I will try to keep it up to date with my latest findings on this awesome game!
 
 ## Installation
-You can download the mods archive from the GitHub Release section and you need to extract it in the %userprofile%\documents\CaptainOfIndustry\mods directory. Note that you must keep the directory structure for them to work (eg. the CheatMenu.dll file must reside in the CheatMenu directory).
+You can download the mods archive from the GitHub Release section and you need to extract it in the %USERPROFILE%\Documents\Captain of Industry\Mods directory. Note that you must keep the directory structure for them to work (eg. the CheatMenu.dll file must reside in the CheatMenu directory).
 
 **It appears you have to start a new game currently to use a mod with it.**
 
