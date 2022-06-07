@@ -1,8 +1,3 @@
-# Captain Of Industry Mods
-
-This project is more of a reverse engineering exercise than an ongoing mod project.
-I will try to keep it up to date with my latest findings on this awesome game!
-
 ## Installation
 You can download the mods archive from the GitHub Release section and you need to extract it in the %USERPROFILE%\Documents\Captain of Industry\Mods directory. Note that you must keep the directory structure for them to work (eg. the CheatMenu.dll file must reside in the CheatMenu directory).
 
