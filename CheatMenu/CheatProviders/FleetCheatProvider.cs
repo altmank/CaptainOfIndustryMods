@@ -22,7 +22,7 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
         {
             return new Lyst<CheatItem>
             {
-                new CheatItem("Finish Exploration", () => _inputScheduler.ScheduleInputCmd(new ExploreFinishCheatCmd())),
+                new CheatItem("Finish Exploration", () => _inputScheduler.ScheduleInputCmd(new ExploreFinishCheatCmd())){Tooltip = "Set your ship to do an action and then press this button and they will complete it immediately"},
                 new CheatItem("Repair Fleet", () => _inputScheduler.ScheduleInputCmd(new FleetRepairCheatCmd()))
             };
         }

@@ -20,7 +20,7 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
 
         public Lyst<CheatItem> Cheats => new Lyst<CheatItem>
         {
-            new CheatItem("Finish Current Research", UnlockCurrentResearch)
+            new CheatItem("Finish Current Research", UnlockCurrentResearch){Tooltip = "Start research, and then use this command to instantly complete it. You can also use Instant Mode to complete started research immediately."}
         };
 
 

@@ -28,11 +28,11 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
         {
             return new Lyst<CheatItem>
             {
-                new CheatItem("Add 10 Pop", () => AddPopulation(10)),
-                new CheatItem("Add 50 Pop", () => AddPopulation(50)),
-                new CheatItem("Remove 10 Pop", () => RemovePopulation(10)),
-                new CheatItem("Remove 50 Pop", () => RemovePopulation(50)),
-                new CheatItem("Add 25 Unity", () => AddUnity(25)) {Tooltip = "Cannot exceed your max Unity"},
+                new CheatItem("Add 10 Pop", () => AddPopulation(10)){Tooltip = "Adds 10 people to your population"},
+                new CheatItem("Add 50 Pop", () => AddPopulation(50)){Tooltip = "Adds 50 people to your population"},
+                new CheatItem("Remove 10 Pop", () => RemovePopulation(10)){Tooltip = "Removes 10 people to your population, great for purging homeless, you heartless monster"},
+                new CheatItem("Remove 50 Pop", () => RemovePopulation(50)){Tooltip = "Removes 50 people to your population, great for purging lots of homeless, you heartless monster"},
+                new CheatItem("Add 25 Unity", () => AddUnity(25)) {Tooltip = "Add Unity to your current supply, it will not exceed your max Unity"},
                 
             };
         }
