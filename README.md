@@ -16,6 +16,6 @@ Cheats
 - Repair fleet and finish an in-progress fleet exploration command
 - Add/remove population
 - Add unity
-
+- Disable maintenance
 
 NOTE: THIS IS A FORK OF THE ORIGINAL AND UNDER ACTIVE DEVELOPMENT TO ADD NEW CHEATS. IT MAY BE UNSTABLE.
