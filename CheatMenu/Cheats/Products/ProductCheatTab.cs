@@ -12,12 +12,12 @@ using Mafi.Unity.UiFramework.Components;
 using Mafi.Unity.UiFramework.Components.Tabs;
 using UnityEngine;
 
-namespace CaptainOfIndustryMods.CheatMenu.CheatProviders.Products
+namespace CaptainOfIndustryMods.CheatMenu.Cheats.Products
 {
     [GlobalDependency(RegistrationMode.AsEverything)]
     public class ProductCheatTab : Tab, ICheatProviderTab
     {
-        private readonly NewInstanceOf<ProductCheatProvider> _cheatProvider;
+        private readonly ProductCheatProvider _cheatProvider;
         private readonly ProtosDb _protosDb;
         private readonly IEnumerable<ProductProto> _productProtos;
         private float _quantity = 250;
@@ -25,7 +25,7 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders.Products
 
         public ProductCheatTab(NewInstanceOf<ProductCheatProvider> cheatProvider, ProtosDb protosDb) : base("ProductCheatTab", SyncFrequency.OncePerSec)
         {
-            _cheatProvider = cheatProvider;
+            _cheatProvider = cheatProvider.Instance;
             _protosDb = protosDb;
 
             _productProtos = _protosDb.Filter<ProductProto>(proto => proto.CanBeLoadedOnTruck).OrderBy(x => x);
@@ -59,7 +59,7 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders.Products
             var spawnProductBtn = Builder.NewBtn("button")
                 .SetButtonStyle(Style.Global.PrimaryBtn)
                 .SetText(new LocStrFormatted("Spawn Product in Shipyard"))
-                .OnClick(() => _cheatProvider.Instance.AddItemToShipyard(_selectedProduct.Value, (int)_quantity));
+                .OnClick(() => _cheatProvider.AddItemToShipyard(_selectedProduct.Value, (int)_quantity));
 
             spawnProductBtn.AppendTo(topOf, spawnProductBtn.GetOptimalSize(), ContainerPosition.LeftOrTop, Offset.Top(10f));
         }

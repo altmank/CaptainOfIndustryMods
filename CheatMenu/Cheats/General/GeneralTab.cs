@@ -8,7 +8,7 @@ using Mafi.Unity.UiFramework;
 using Mafi.Unity.UiFramework.Components;
 using Mafi.Unity.UiFramework.Components.Tabs;
 
-namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
+namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
 {
     [GlobalDependency(RegistrationMode.AsEverything)]
     public class GeneralTab : Tab, ICheatProviderTab

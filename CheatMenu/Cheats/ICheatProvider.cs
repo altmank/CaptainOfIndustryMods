@@ -2,7 +2,7 @@
 using Mafi;
 using Mafi.Collections;
 
-namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
+namespace CaptainOfIndustryMods.CheatMenu.Cheats
 {
     [MultiDependency]
     public interface ICheatProvider

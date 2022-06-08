@@ -6,7 +6,7 @@ using Mafi.Collections;
 using Mafi.Core;
 using Mafi.Core.Utils;
 
-namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
+namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
 {
     public class InstantBuildCheatProvider : ICheatProvider
     {

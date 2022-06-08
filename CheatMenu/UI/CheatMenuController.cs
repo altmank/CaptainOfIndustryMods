@@ -1,5 +1,4 @@
 ﻿using System;
-using CaptainOfIndustryMods.CheatMenu.UI;
 using Mafi;
 using Mafi.Core.GameLoop;
 using Mafi.Unity;
@@ -8,7 +7,7 @@ using Mafi.Unity.UiFramework;
 using Mafi.Unity.UserInterface;
 using UnityEngine;
 
-namespace CaptainOfIndustryMods.CheatMenu
+namespace CaptainOfIndustryMods.CheatMenu.UI
 {
     [GlobalDependency(RegistrationMode.AsEverything)]
     public class CheatMenuController : BaseWindowController<CheatMenuWindow>, IToolbarItemInputController

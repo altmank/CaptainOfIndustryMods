@@ -7,7 +7,7 @@ using Mafi.Collections;
 using Mafi.Core;
 using Mafi.Core.Factory.ElectricPower;
 
-namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
+namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
 {
     public class ElectricityCheatProvider : ICheatProvider
     {

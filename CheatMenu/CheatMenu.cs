@@ -1,4 +1,5 @@
-﻿using CaptainOfIndustryMods.CheatMenu.CheatProviders;
+﻿using CaptainOfIndustryMods.CheatMenu.Cheats;
+using CaptainOfIndustryMods.CheatMenu.UI;
 using Mafi;
 using Mafi.Core.Mods;
 using Mafi.Core.Prototypes;

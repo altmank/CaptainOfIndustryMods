@@ -4,19 +4,15 @@ using Mafi.Core.Input;
 using Mafi.Core.Research;
 using Mafi.Core.UnlockingTree;
 
-namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
+namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
 {
     public class ResearchCheatProvider : ICheatProvider
     {
         private readonly IInputScheduler _inputScheduler;
-        private readonly INodeUnlocker _nodeUnlocker;
-        private readonly ResearchManager _researchManager;
 
-        public ResearchCheatProvider(ResearchManager researchManager, IInputScheduler inputScheduler, INodeUnlocker nodeUnlocker)
+        public ResearchCheatProvider( IInputScheduler inputScheduler)
         {
-            _researchManager = researchManager;
             _inputScheduler = inputScheduler;
-            _nodeUnlocker = nodeUnlocker;
         }
 
         public Lyst<CheatItem> Cheats => new Lyst<CheatItem>

@@ -3,7 +3,7 @@ using Mafi;
 using Mafi.Collections;
 using Mafi.Core.Vehicles;
 
-namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
+namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
 {
     public class VehiclesCheatProvider : ICheatProvider
     {

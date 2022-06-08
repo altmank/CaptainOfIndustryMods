@@ -1,6 +1,6 @@
 using Mafi;
 
-namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
+namespace CaptainOfIndustryMods.CheatMenu.Cheats
 {
     [MultiDependency]
     public interface ICheatProviderTab

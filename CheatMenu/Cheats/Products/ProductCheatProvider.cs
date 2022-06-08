@@ -4,7 +4,7 @@ using Mafi.Core.Economy;
 using Mafi.Core.Products;
 using Mafi.Core.Prototypes;
 
-namespace CaptainOfIndustryMods.CheatMenu.CheatProviders.Products
+namespace CaptainOfIndustryMods.CheatMenu.Cheats.Products
 {
     public class ProductCheatProvider
     {

@@ -8,7 +8,7 @@ using Mafi.Core;
 using Mafi.Core.Environment;
 using Mafi.Core.Prototypes;
 
-namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
+namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
 {
     public class WeatherCheatProvider : ICheatProvider
     {

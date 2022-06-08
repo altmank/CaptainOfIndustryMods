@@ -4,7 +4,7 @@ using Mafi.Collections;
 using Mafi.Core.Input;
 using Mafi.Core.World;
 
-namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
+namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
 {
     public class FleetCheatProvider : ICheatProvider
     {

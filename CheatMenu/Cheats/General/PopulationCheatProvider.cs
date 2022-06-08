@@ -5,7 +5,7 @@ using Mafi.Core;
 using Mafi.Core.Buildings.Settlements;
 using Mafi.Core.Population;
 
-namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
+namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
 {
     public class PopulationCheatProvider : ICheatProvider
     {

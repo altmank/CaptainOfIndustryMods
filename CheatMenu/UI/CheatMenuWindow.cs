@@ -1,4 +1,4 @@
-﻿using CaptainOfIndustryMods.CheatMenu.CheatProviders;
+﻿using CaptainOfIndustryMods.CheatMenu.Cheats;
 using CaptainOfIndustryMods.CheatMenu.Logging;
 using Mafi;
 using Mafi.Collections.ImmutableCollections;
