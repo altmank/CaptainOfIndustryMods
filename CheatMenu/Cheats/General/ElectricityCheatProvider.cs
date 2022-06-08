@@ -12,17 +12,17 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
     public class ElectricityCheatProvider : ICheatProvider
     {
         private readonly IElectricityManager _electricityManager;
-        private readonly Mafi.Lazy<Lyst<CheatItem>> _lazyCheats;
+        private readonly Mafi.Lazy<Lyst<ICheatCommandBase>> _lazyCheats;
         private FieldInfo _freeElectricityPerTickField;
 
 
         public ElectricityCheatProvider(IElectricityManager electricityManager)
         {
             _electricityManager = electricityManager;
-            _lazyCheats = new Mafi.Lazy<Lyst<CheatItem>>(GetCheats);
+            _lazyCheats = new Mafi.Lazy<Lyst<ICheatCommandBase>>(GetCheats);
         }
 
-        public Lyst<CheatItem> Cheats => _lazyCheats.Value;
+        public Lyst<ICheatCommandBase> Cheats => _lazyCheats.Value;
 
         private void SetAccessors()
         {
@@ -37,13 +37,13 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
             _freeElectricityPerTickField = electricityManagerType.GetField("m_freeElectricityPerTick", BindingFlags.NonPublic | BindingFlags.Instance);
         }
 
-        private Lyst<CheatItem> GetCheats()
+        private Lyst<ICheatCommandBase> GetCheats()
         {
-            return new Lyst<CheatItem>
+            return new Lyst<ICheatCommandBase>
             {
-                new CheatItem("Add 100 KW Free Electricity", () => AddFreeElectricity(100)),
+                new CheatCommand("Add 100 KW Free Electricity", () => AddFreeElectricity(100)),
 
-                new CheatItem("Remove 100 KW Free Electricity", () => RemoveFreeElectricity(100))
+                new CheatCommand("Remove 100 KW Free Electricity", () => RemoveFreeElectricity(100))
             };
         }
 

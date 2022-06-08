@@ -7,6 +7,6 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats
     [MultiDependency]
     public interface ICheatProvider
     {
-        Lyst<CheatItem> Cheats { get; }
+        Lyst<ICheatCommandBase> Cheats { get; }
     }
 }

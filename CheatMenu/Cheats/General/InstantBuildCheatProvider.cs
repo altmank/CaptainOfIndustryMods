@@ -11,17 +11,17 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
     public class InstantBuildCheatProvider : ICheatProvider
     {
         private readonly IInstaBuildManager _instaBuildManager;
-        private readonly Mafi.Lazy<Lyst<CheatItem>> _lazyCheats;
+        private readonly Mafi.Lazy<Lyst<ICheatCommandBase>> _lazyCheats;
         private FieldInfo _instantBuildProperty;
 
 
         public InstantBuildCheatProvider(IInstaBuildManager instaBuildManager)
         {
             _instaBuildManager = instaBuildManager;
-            _lazyCheats = new Mafi.Lazy<Lyst<CheatItem>>(GetCheats);
+            _lazyCheats = new Mafi.Lazy<Lyst<ICheatCommandBase>>(GetCheats);
         }
 
-        public Lyst<CheatItem> Cheats => _lazyCheats.Value;
+        public Lyst<ICheatCommandBase> Cheats => _lazyCheats.Value;
 
 
         private void SetInstantBuildAccessors()
@@ -39,25 +39,30 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
                 BindingFlags.NonPublic | BindingFlags.Instance);
         }
 
-        private Lyst<CheatItem> GetCheats()
+        private Lyst<ICheatCommandBase> GetCheats()
         {
-            return new Lyst<CheatItem>
+            return new Lyst<ICheatCommandBase>
             {
-                new CheatItem(
-                    "Toggle Instant Mode",
+                new CheatToggleCommand(
+                    "Instant Mode",
                     ToggleInstantMode,
-                    true
-                )
+                    IsToggleEnabled)
                 {
-                    Tooltip = "Enables instant build, instant research, instant upgrades (shipyards, buildings, settlements, mines), instant vehicle construction, and instant repair."
+                    Tooltip = "Set instant mode off (left) or on (right). Enables instant build, instant research, instant upgrades (shipyards, buildings, settlements, mines), instant vehicle construction, and instant repair when on"
                 }
             };
         }
 
-        private void ToggleInstantMode()
+        private bool IsToggleEnabled()
         {
             SetInstantBuildAccessors();
-            _instantBuildProperty.SetValue(_instaBuildManager, !(bool)_instantBuildProperty.GetValue(_instaBuildManager));
+            return (bool)_instantBuildProperty.GetValue(_instaBuildManager);
+        }
+
+        private void ToggleInstantMode(bool enable)
+        {
+            SetInstantBuildAccessors();
+            _instantBuildProperty.SetValue(_instaBuildManager, enable);
         }
     }
 }

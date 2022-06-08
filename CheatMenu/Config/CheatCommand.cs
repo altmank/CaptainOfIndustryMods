@@ -2,18 +2,16 @@
 
 namespace CaptainOfIndustryMods.CheatMenu.Config
 {
-    public class CheatItem
+    public class CheatCommand: ICheatCommandBase
     {
-        public CheatItem(string title, Action action, bool isToggle = false)
+        public CheatCommand(string title, Action action)
         {
             Title = title;
             Action = action;
-            IsToggle = isToggle;
         }
 
         public string Title { get; }
         public Action Action { get; }
-        public bool IsToggle { get; }
         public string Tooltip { get; set; }
     }
 }

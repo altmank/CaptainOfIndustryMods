@@ -11,9 +11,9 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
     public class MaintenanceCheatProvider : ICheatProvider
     {
         private readonly MaintenanceManager _maintenanceManager;
-        private readonly Mafi.Lazy<Lyst<CheatItem>> _lazyCheats;
+        private readonly Mafi.Lazy<Lyst<ICheatCommandBase>> _lazyCheats;
         private FieldInfo _maintenanceDisabledField;
-        public Lyst<CheatItem> Cheats => _lazyCheats.Value;
+        public Lyst<ICheatCommandBase> Cheats => _lazyCheats.Value;
 
         private void SetAccessors()
         {
@@ -33,23 +33,29 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
         public MaintenanceCheatProvider(MaintenanceManager maintenanceManager)
         {
             _maintenanceManager = maintenanceManager;
-            _lazyCheats = new Mafi.Lazy<Lyst<CheatItem>>(GetCheats);
+            _lazyCheats = new Mafi.Lazy<Lyst<ICheatCommandBase>>(GetCheats);
         }
 
-        private Lyst<CheatItem> GetCheats()
+        private Lyst<ICheatCommandBase> GetCheats()
         {
-            return new Lyst<CheatItem>
+            return new Lyst<ICheatCommandBase>
             {
-                new CheatItem(
-                    "Toggle Maintenance",
-                    () =>
-                    {
-                        SetAccessors();
-                        var isMaintenanceEnabled = (bool)_maintenanceDisabledField.GetValue(_maintenanceManager);
-                        _maintenanceDisabledField.SetValue(_maintenanceManager, !isMaintenanceEnabled);
-                    }, true
-                ){Tooltip = "Toggle consumption of maintenance resources"}
+                new CheatToggleCommand(
+                    "Maintenance",
+                    ToggleMaintenance, IsToggleEnabled){Tooltip = "Set Maintenance off (left) or on (right). If on, then your settlement will consume maintenance resources. If off, all consumption of maintenance will stop."}
             };
+        }
+
+        private bool IsToggleEnabled()
+        {
+            SetAccessors();
+            return !(bool)_maintenanceDisabledField.GetValue(_maintenanceManager);
+        }
+
+        private void ToggleMaintenance(bool enable)
+        {
+            SetAccessors();
+            _maintenanceDisabledField.SetValue(_maintenanceManager, !enable);
         }
     }
 }

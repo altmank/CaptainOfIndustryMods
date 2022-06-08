@@ -15,9 +15,9 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
             _inputScheduler = inputScheduler;
         }
 
-        public Lyst<CheatItem> Cheats => new Lyst<CheatItem>
+        public Lyst<ICheatCommandBase> Cheats => new Lyst<ICheatCommandBase>
         {
-            new CheatItem("Finish Current Research", UnlockCurrentResearch)
+            new CheatCommand("Finish Current Research", UnlockCurrentResearch)
                 { Tooltip = "Start research, and then use this command to instantly complete it. You can also use Instant Mode to complete started research immediately." }
         };
 

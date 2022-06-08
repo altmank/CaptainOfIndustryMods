@@ -1,0 +1,20 @@
+using System;
+
+namespace CaptainOfIndustryMods.CheatMenu.Config
+{
+    public class CheatToggleCommand: ICheatCommandBase
+    {
+        public CheatToggleCommand(string title, Action<bool> action, Func<bool> isToggleEnabled)
+        {
+            Title = title;
+            Action = action;
+            IsToggleEnabled = isToggleEnabled;
+        }
+
+        public string Title { get; }
+        public Action<bool> Action { get; }
+        
+        public Func<bool> IsToggleEnabled { get; }
+        public string Tooltip { get; set; }
+    }
+}

@@ -9,23 +9,23 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
     public class FleetCheatProvider : ICheatProvider
     {
         private readonly IInputScheduler _inputScheduler;
-        private readonly Lazy<Lyst<CheatItem>> _lazyCheats;
+        private readonly Lazy<Lyst<ICheatCommandBase>> _lazyCheats;
 
         public FleetCheatProvider(IInputScheduler inputScheduler)
         {
             _inputScheduler = inputScheduler;
-            _lazyCheats = new Lazy<Lyst<CheatItem>>(GetCheats);
+            _lazyCheats = new Lazy<Lyst<ICheatCommandBase>>(GetCheats);
         }
 
-        public Lyst<CheatItem> Cheats => _lazyCheats.Value;
+        public Lyst<ICheatCommandBase> Cheats => _lazyCheats.Value;
 
-        private Lyst<CheatItem> GetCheats()
+        private Lyst<ICheatCommandBase> GetCheats()
         {
-            return new Lyst<CheatItem>
+            return new Lyst<ICheatCommandBase>
             {
-                new CheatItem("Finish Exploration", () => _inputScheduler.ScheduleInputCmd(new ExploreFinishCheatCmd()))
+                new CheatCommand("Finish Exploration", () => _inputScheduler.ScheduleInputCmd(new ExploreFinishCheatCmd()))
                     { Tooltip = "Set your ship to do an action and then press this button and they will complete it immediately" },
-                new CheatItem("Repair Fleet", () => _inputScheduler.ScheduleInputCmd(new FleetRepairCheatCmd()))
+                new CheatCommand("Repair Fleet", () => _inputScheduler.ScheduleInputCmd(new FleetRepairCheatCmd()))
             };
         }
     }

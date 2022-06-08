@@ -12,7 +12,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
 {
     public class WeatherCheatProvider : ICheatProvider
     {
-        private readonly Mafi.Lazy<Lyst<CheatItem>> _lazyCheats;
+        private readonly Mafi.Lazy<Lyst<ICheatCommandBase>> _lazyCheats;
         private readonly ProtosDb _protosDb;
         private readonly IWeatherManager _weatherManager;
         private PropertyInfo _currentWeatherProperty;
@@ -22,10 +22,10 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
         {
             _weatherManager = weatherManager;
             _protosDb = protosDb;
-            _lazyCheats = new Mafi.Lazy<Lyst<CheatItem>>(GetCheats);
+            _lazyCheats = new Mafi.Lazy<Lyst<ICheatCommandBase>>(GetCheats);
         }
 
-        public Lyst<CheatItem> Cheats => _lazyCheats.Value;
+        public Lyst<ICheatCommandBase> Cheats => _lazyCheats.Value;
 
         private void SetWeatherAccessors()
         {
@@ -42,25 +42,25 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
                 BindingFlags.NonPublic | BindingFlags.Instance);
         }
 
-        private Lyst<CheatItem> GetCheats()
+        private Lyst<ICheatCommandBase> GetCheats()
         {
-            return new Lyst<CheatItem>
+            return new Lyst<ICheatCommandBase>
             {
-                new CheatItem(
+                new CheatCommand(
                     "Reset weather",
                     () =>
                     {
                         SetWeatherAccessors();
                         SetWeather(Ids.Weather.Sunny, true);
                     }),
-                new CheatItem(
+                new CheatCommand(
                     "Sunny weather",
                     () =>
                     {
                         SetWeatherAccessors();
                         SetWeather(Ids.Weather.Sunny);
                     }),
-                new CheatItem(
+                new CheatCommand(
                     "Cloudy weather",
                     () =>
                     {
@@ -68,14 +68,14 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
                         SetWeather(Ids.Weather.Cloudy);
                     }),
 
-                new CheatItem(
+                new CheatCommand(
                     "Rainy weather",
                     () =>
                     {
                         SetWeatherAccessors();
                         SetWeather(Ids.Weather.Rainy);
                     }),
-                new CheatItem(
+                new CheatCommand(
                     "Heavy rain weather",
                     () =>
                     {

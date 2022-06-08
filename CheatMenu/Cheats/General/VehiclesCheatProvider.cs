@@ -7,32 +7,32 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
 {
     public class VehiclesCheatProvider : ICheatProvider
     {
-        private readonly Lazy<Lyst<CheatItem>> _lazyCheats;
+        private readonly Lazy<Lyst<ICheatCommandBase>> _lazyCheats;
         private readonly IVehiclesManager _vehiclesManager;
 
 
         public VehiclesCheatProvider(IVehiclesManager vehiclesManager)
         {
             _vehiclesManager = vehiclesManager;
-            _lazyCheats = new Lazy<Lyst<CheatItem>>(GetCheats);
+            _lazyCheats = new Lazy<Lyst<ICheatCommandBase>>(GetCheats);
         }
 
-        public Lyst<CheatItem> Cheats => _lazyCheats.Value;
+        public Lyst<ICheatCommandBase> Cheats => _lazyCheats.Value;
 
-        private Lyst<CheatItem> GetCheats()
+        private Lyst<ICheatCommandBase> GetCheats()
         {
-            return new Lyst<CheatItem>
+            return new Lyst<ICheatCommandBase>
             {
-                new CheatItem(
+                new CheatCommand(
                     "Vehicle Limit Add 100",
                     () => _vehiclesManager.IncreaseVehicleLimit(100)),
-                new CheatItem(
+                new CheatCommand(
                     "Vehicle Limit Remove 100",
                     () => _vehiclesManager.IncreaseVehicleLimit(-100)),
-                new CheatItem(
+                new CheatCommand(
                     "Vehicle Limit Add 10",
                     () => _vehiclesManager.IncreaseVehicleLimit(10)),
-                new CheatItem(
+                new CheatCommand(
                     "Vehicle Limit Remove 10",
                     () => _vehiclesManager.IncreaseVehicleLimit(-10))
             };
