@@ -8,7 +8,7 @@ You can download the mods archive from the GitHub Release section and you need t
 This mod will gives you access to a menu exposing some cheats, it can be accessed via the F8 key or by clicking the right-most icon on your bottom toolbar.
 
 Cheats
-- Spawn any product into your shipyard at specified quantities
+- Spawn any haulable product into your shipyard at specified quantities
 - Get free power
 - Instant mode adds instant build, research, upgrade, spawning of vehicles and more
 - Change vehicle cap
