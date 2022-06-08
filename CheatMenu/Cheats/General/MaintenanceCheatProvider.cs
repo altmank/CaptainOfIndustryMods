@@ -48,7 +48,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
                         var isMaintenanceEnabled = (bool)_maintenanceDisabledField.GetValue(_maintenanceManager);
                         _maintenanceDisabledField.SetValue(_maintenanceManager, !isMaintenanceEnabled);
                     }, true
-                )
+                ){Tooltip = "Toggle consumption of maintenance resources"}
             };
         }
     }
