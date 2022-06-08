@@ -1,9 +1,11 @@
 ﻿using CaptainOfIndustryMods.CheatMenu.Cheats;
+using CaptainOfIndustryMods.CheatMenu.Logging;
 using CaptainOfIndustryMods.CheatMenu.UI;
 using Mafi;
 using Mafi.Core.Mods;
 using Mafi.Core.Prototypes;
 using Mafi.Unity;
+using Mafi.Unity.InputControl.Toolbar;
 using UnityEngine;
 
 namespace CaptainOfIndustryMods.CheatMenu
@@ -18,9 +20,7 @@ namespace CaptainOfIndustryMods.CheatMenu
 
         public void Initialize(DependencyResolver resolver, bool gameWasLoaded)
         {
-            var cheatMenuController = resolver.Resolve<CheatMenuController>();
-            var unityInputManager = resolver.Resolve<IUnityInputMgr>();
-            unityInputManager.RegisterGlobalShortcut(KeyCode.F8, cheatMenuController);
+            CheatMenuLogger.Log.Info("Running version v5");
         }
 
         public void RegisterPrototypes(ProtoRegistrator registrator)
@@ -30,7 +30,6 @@ namespace CaptainOfIndustryMods.CheatMenu
         public void RegisterDependencies(DependencyResolverBuilder depBuilder, ProtosDb protosDb, bool wasLoaded)
         {
             depBuilder.RegisterAllTypesImplementing<ICheatProvider>(typeof(CheatMenu).Assembly);
-            depBuilder.RegisterDependency<CheatMenuController>().AsSelf().AsAllInterfaces();
         }
     }
 }

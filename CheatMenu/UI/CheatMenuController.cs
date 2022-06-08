@@ -14,10 +14,12 @@ namespace CaptainOfIndustryMods.CheatMenu.UI
     {
         private readonly ToolbarController _toolbarController;
 
-        public CheatMenuController(IUnityInputMgr inputManager, IGameLoopEvents gameLoop, CheatMenuWindow cheatMenuWindow, ToolbarController toolbarController)
+        public CheatMenuController(IUnityInputMgr inputManager, IGameLoopEvents gameLoop, CheatMenuWindow cheatMenuWindow, ToolbarController toolbarController, IUnityInputMgr unityInputMgr)
             : base(inputManager, gameLoop, cheatMenuWindow)
         {
             _toolbarController = toolbarController;
+            
+            unityInputMgr.RegisterGlobalShortcut(KeyCode.F8, this);
         }
 
         public bool IsVisible => true;
