@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CaptainOfIndustryMods.CheatMenu
+namespace CaptainOfIndustryMods.CheatMenu.Data
 {
     public class CheatItem
     {
@@ -15,6 +15,5 @@ namespace CaptainOfIndustryMods.CheatMenu
         public Action Action { get; }
         public bool IsToggle { get; }
         public string Tooltip { get; set; }
-        
     }
 }

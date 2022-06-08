@@ -1,53 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using CaptainOfIndustryMods.CheatMenu.UI;
 using Mafi;
-using Mafi.Collections;
-using Mafi.Core.Input;
-using Mafi.Unity.InputControl;
+using Mafi.Core.GameLoop;
+using Mafi.Unity;
+using Mafi.Unity.InputControl.Toolbar;
 using Mafi.Unity.UiFramework;
 using Mafi.Unity.UserInterface;
+using UnityEngine;
 
 namespace CaptainOfIndustryMods.CheatMenu
 {
-    public class CheatMenuController : IUnityInputController, IUnityUi
+    [GlobalDependency(RegistrationMode.AsEverything)]
+    public class CheatMenuController : BaseWindowController<CheatMenuWindow>, IToolbarItemInputController
     {
-        private readonly DependencyResolver _dependencyResolver;
-        private CheatMenuView _view;
+        private readonly ToolbarController _toolbarController;
 
-        //TODO: Is there a way to directly request all implementations?
-        public CheatMenuController(DependencyResolver dependencyResolver)
+        public CheatMenuController(IUnityInputMgr inputManager, IGameLoopEvents gameLoop, CheatMenuWindow cheatMenuWindow, ToolbarController toolbarController) : base(inputManager, gameLoop,
+            cheatMenuWindow)
         {
-            _dependencyResolver = dependencyResolver;
+            _toolbarController = toolbarController;
         }
 
-        public ControllerConfig Config => new ControllerConfig
-        {
-            DeactivateOnOtherControllerActive = true,
-            DeactivateOnNonUiClick = true,
-            AllowInspectorCursor = false
-        };
+        public bool IsVisible => true;
+        public event Action<IToolbarItemInputController> VisibilityChanged;
 
-        public void Activate()
+        public override void RegisterUi(UiBuilder builder)
         {
-            _view.Show();
-        }
-
-        public void Deactivate()
-        {
-            _view.Hide();
-        }
-
-        public bool InputUpdate(IInputScheduler inputScheduler)
-        {
-            return false;
-        }
-
-        public void RegisterUi(UiBuilder builder)
-        {
-            var cheatProviders = _dependencyResolver.ResolveAll<ICheatProvider>().Implementations;
-            _view = new CheatMenuView(cheatProviders
-                .Select(x => new KeyValuePair<string, Lyst<CheatItem>>(x.GetType().Name, x.Cheats))
-                .ToDict());
-            _view.BuildUi(builder);
+            _toolbarController.AddMainMenuButton("Cheat Menu", this, "Assets/Unity/UserInterface/Toolbar/Power.svg", 1337f, KeyCode.F8);
+            base.RegisterUi(builder);
         }
     }
 }

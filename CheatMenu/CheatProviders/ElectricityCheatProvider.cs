@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using CaptainOfIndustryMods.CheatMenu.Data;
 using CaptainOfIndustryMods.CheatMenu.Logging;
 using Mafi;
 using Mafi.Collections;
@@ -13,6 +14,7 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
         private readonly IElectricityManager _electricityManager;
         private readonly Mafi.Lazy<Lyst<CheatItem>> _lazyCheats;
         private FieldInfo _freeElectricityPerTickField;
+
 
         public ElectricityCheatProvider(IElectricityManager electricityManager)
         {

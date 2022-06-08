@@ -1,4 +1,5 @@
-﻿using Mafi;
+﻿using CaptainOfIndustryMods.CheatMenu.CheatProviders;
+using Mafi;
 using Mafi.Core.Mods;
 using Mafi.Core.Prototypes;
 using Mafi.Unity;
@@ -17,11 +18,7 @@ namespace CaptainOfIndustryMods.CheatMenu
         public void Initialize(DependencyResolver resolver, bool gameWasLoaded)
         {
             var cheatMenuController = resolver.Resolve<CheatMenuController>();
-
-            // Fetch the Input Manager
             var unityInputManager = resolver.Resolve<IUnityInputMgr>();
-
-            // Register a global shortcut for this controller
             unityInputManager.RegisterGlobalShortcut(KeyCode.F8, cheatMenuController);
         }
 

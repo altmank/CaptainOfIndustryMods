@@ -1,21 +1,31 @@
-﻿using Mafi.Collections;
+﻿using System.Collections.Generic;
+using CaptainOfIndustryMods.CheatMenu.Data;
+using Mafi;
+using Mafi.Collections;
+using Mafi.Core.Syncers;
 using Mafi.Localization;
 using Mafi.Unity.UiFramework;
 using Mafi.Unity.UiFramework.Components;
-using Mafi.Unity.UserInterface;
+using Mafi.Unity.UiFramework.Components.Tabs;
 
-namespace CaptainOfIndustryMods.CheatMenu
+namespace CaptainOfIndustryMods.CheatMenu.CheatProviders
 {
-    public class CheatMenuView : WindowView
+    [GlobalDependency(RegistrationMode.AsEverything)]
+    public class GeneralTab : Tab, ICheatProviderTab
     {
         private readonly Dict<string, Lyst<CheatItem>> _cheatItems;
 
-        public CheatMenuView(Dict<string, Lyst<CheatItem>> cheatItems) : base("CheatMenu", noHeader: true)
+        public GeneralTab(AllImplementationsOf<ICheatProvider> cheatProviders) : base(nameof(GeneralTab), SyncFrequency.OncePerSec)
         {
-            _cheatItems = cheatItems;
+            _cheatItems = cheatProviders.Implementations
+                .Select(x => new KeyValuePair<string, Lyst<CheatItem>>(x.GetType().Name, x.Cheats))
+                .ToDict();
         }
 
-        protected override void BuildWindowContent()
+        public string Name => "General";
+        public string IconPath => "Assets/Unity/UserInterface/Toolbar/Settlement.svg";
+
+        protected override void BuildUi()
         {
             var buttonsContainer = Builder
                 .NewStackContainer("Buttons container")
@@ -23,15 +33,7 @@ namespace CaptainOfIndustryMods.CheatMenu
                 .SetSizeMode(StackContainer.SizeMode.StaticDirectionAligned)
                 .SetItemSpacing(25f)
                 .SetInnerPadding(Offset.Top(20f) + Offset.Bottom(10f))
-                //TODO: PutTo require a reference to UnityEngine.CoreModule, probably because of it's IUiElement parameter containing a GameObject property
-                .PutTo(GetContentPanel());
-
-            Builder.NewTitle("Title")
-                .SetText("Cheat menu")
-                .SetPreferredSize()
-                .AppendTo(buttonsContainer, offset: Offset.LeftRight(20));
-
-            var largest = 0f;
+                .PutToTopOf(this, 680f);
 
             foreach (var outer in _cheatItems)
             {
@@ -41,7 +43,7 @@ namespace CaptainOfIndustryMods.CheatMenu
                     .SetSizeMode(StackContainer.SizeMode.StaticDirectionAligned)
                     .SetItemSpacing(10f)
                     .SetInnerPadding(Offset.All(10f));
-                
+
                 buttonGroupContainer.AppendTo(buttonsContainer, buttonGroupContainer.GetDynamicHeight());
 
                 foreach (var cheatItem in outer.Value)
@@ -50,17 +52,10 @@ namespace CaptainOfIndustryMods.CheatMenu
                         .SetButtonStyle(Style.Global.GeneralBtn)
                         .SetText(new LocStrFormatted(cheatItem.Title))
                         .AddToolTip(cheatItem.Tooltip)
-                        //TODO: May be a bug, the OnClick method has a parameter of type UnityEngine.AudioSource which require a reference to the unity library
                         .OnClick(cheatItem.Action);
                     btn.AppendTo(buttonGroupContainer, btn.GetOptimalSize(), ContainerPosition.MiddleOrCenter);
                 }
-
-                var width = buttonGroupContainer.GetDynamicWidth();
-                if (width > largest) largest = width;
             }
-
-            SetContentSize(largest, buttonsContainer.GetDynamicHeight());
-            PositionSelfToCenter();
         }
     }
 }

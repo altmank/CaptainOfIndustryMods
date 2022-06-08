@@ -4,7 +4,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Logging
 {
     public static class CheatMenuLogger
     {
-        private const string CheatMenuLogPrefix = "CheatMenu: ";
+        private const string CheatMenuLogPrefix = "[CheatMenu]: ";
 
         public static class Log
         {
