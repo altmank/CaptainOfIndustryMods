@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using CaptainOfIndustryMods.CheatMenu.Data;
+using CaptainOfIndustryMods.CheatMenu.Config;
 using CaptainOfIndustryMods.CheatMenu.Logging;
 using Mafi;
 using Mafi.Collections;

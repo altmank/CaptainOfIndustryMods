@@ -1,4 +1,4 @@
-﻿using CaptainOfIndustryMods.CheatMenu.Data;
+﻿using CaptainOfIndustryMods.CheatMenu.Config;
 using Mafi;
 using Mafi.Collections;
 using Mafi.Core.Vehicles;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CaptainOfIndustryMods.CheatMenu.Data
+namespace CaptainOfIndustryMods.CheatMenu.Config
 {
     public class CheatItem
     {
