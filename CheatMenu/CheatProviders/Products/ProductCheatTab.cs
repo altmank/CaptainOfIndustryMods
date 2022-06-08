@@ -31,7 +31,7 @@ namespace CaptainOfIndustryMods.CheatMenu.CheatProviders.Products
             _productProtos = _protosDb.Filter<ProductProto>(proto => proto.CanBeLoadedOnTruck).OrderBy(x => x);
         }
 
-        public string Name => "Items";
+        public string Name => "Products";
         public string IconPath => "Assets/Unity/UserInterface/Toolbar/CargoShip.svg";
 
         protected override void BuildUi()
