@@ -10,7 +10,9 @@ This mod will gives you access to a menu exposing some cheats, it can be accesse
 Cheats
 - Spawn any haulable product into your shipyard at specified quantities
 - Get free power
+- Get free computing power
 - Instant mode adds instant build, research, upgrade, spawning of vehicles and more
+- Unlock all research
 - Change vehicle cap
 - Change weather
 - Repair fleet and finish an in-progress fleet exploration command
