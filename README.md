@@ -18,4 +18,4 @@ Cheats
 - Add unity
 - Disable maintenance
 
-NOTE: THIS IS A FORK OF THE ORIGINAL AND UNDER ACTIVE DEVELOPMENT TO ADD NEW CHEATS. IT MAY BE UNSTABLE.
+NOTE: The game is in early access and is being patched often. Patches have and will likely continue to break the mod so please check the game version mentioned in the release you are using. Updates to patches will be created as time permits. Disable automatic game updates and only update when a new Cheat Menu version is released if you want to keep it working during these patches.
