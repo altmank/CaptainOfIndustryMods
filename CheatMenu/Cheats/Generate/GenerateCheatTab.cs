@@ -19,7 +19,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Generate
         private float _kwGen = 0;
         private float _computingTFlopGen = 0;
         private float _unityGen = 0;
-        private int _sliderWidth = 575;
+        private int _sliderWidth = 585;
 
         public GenerateCheatTab(
             NewInstanceOf<ElectricityCheatProvider> electricityCheatProvider,
@@ -110,7 +110,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Generate
         private void BuildUnitySlider(StackContainer topOf)
         {
             Builder
-                .AddSectionTitle(topOf, new LocStrFormatted("Perpetual Unity Generation"), new LocStrFormatted("Drag slider to change perpetual Unity amount generation"));
+                .AddSectionTitle(topOf, new LocStrFormatted("Perpetual Unity Generation (Not yet implemented)"), new LocStrFormatted("Drag slider to change perpetual Unity amount generation"));
 
             var sliderLabel = Builder
                 .NewTxt("")
