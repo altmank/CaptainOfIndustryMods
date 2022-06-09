@@ -2,6 +2,7 @@
 using Mafi;
 using Mafi.Core.GameLoop;
 using Mafi.Unity;
+using Mafi.Unity.InputControl;
 using Mafi.Unity.InputControl.Toolbar;
 using Mafi.Unity.UiFramework;
 using Mafi.Unity.UserInterface;
@@ -26,7 +27,7 @@ namespace CaptainOfIndustryMods.CheatMenu.UI
 
         public override void RegisterUi(UiBuilder builder)
         {
-            _toolbarController.AddMainMenuButton("Cheat Menu", this, "Assets/Unity/UserInterface/Toolbar/Power.svg", 1337f, KeyCode.F8);
+            _toolbarController.AddMainMenuButton("Cheat Menu", this, "Assets/Unity/UserInterface/Toolbar/Power.svg", 1337f, manager => KeyBindings.FromKey(KeyCode.F8));
             base.RegisterUi(builder);
         }
     }

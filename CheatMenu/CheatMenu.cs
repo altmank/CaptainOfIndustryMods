@@ -20,7 +20,8 @@ namespace CaptainOfIndustryMods.CheatMenu
 
         public void Initialize(DependencyResolver resolver, bool gameWasLoaded)
         {
-            CheatMenuLogger.Log.Info("Running version v6");
+            CheatMenuLogger.Log.Info("Running version v7");
+            CheatMenuLogger.Log.Info("Built for game version v.0.4.2");
         }
 
         public void RegisterPrototypes(ProtoRegistrator registrator)
