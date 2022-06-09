@@ -40,6 +40,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Products
             BuildQuantitySlider(topOf);
             BuildProductSelector(topOf);
             BuildSpawnButton(topOf);
+            BuildRemoveButton(topOf);
         }
 
         private StackContainer CreateStackContainer()
@@ -60,6 +61,16 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Products
                 .SetButtonStyle(Style.Global.PrimaryBtn)
                 .SetText(new LocStrFormatted("Spawn Product in Shipyard"))
                 .OnClick(() => _cheatProvider.AddItemToShipyard(_selectedProduct.Value, (int)_quantity));
+
+            spawnProductBtn.AppendTo(topOf, spawnProductBtn.GetOptimalSize(), ContainerPosition.LeftOrTop, Offset.Top(10f));
+        }
+        
+        private void BuildRemoveButton(StackContainer topOf)
+        {
+            var spawnProductBtn = Builder.NewBtn("button")
+                .SetButtonStyle(Style.Global.PrimaryBtn)
+                .SetText(new LocStrFormatted("Remove Product in Shipyard"))
+                .OnClick(() => _cheatProvider.RemoveItemFromShipYard(_selectedProduct.Value, (int)_quantity));
 
             spawnProductBtn.AppendTo(topOf, spawnProductBtn.GetOptimalSize(), ContainerPosition.LeftOrTop, Offset.Top(10f));
         }
