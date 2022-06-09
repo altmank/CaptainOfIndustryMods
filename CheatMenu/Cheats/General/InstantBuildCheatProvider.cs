@@ -23,7 +23,6 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
 
         public Lyst<ICheatCommandBase> Cheats => _lazyCheats.Value;
 
-
         private void SetInstantBuildAccessors()
         {
             if (!(_instantBuildProperty is null)) return;

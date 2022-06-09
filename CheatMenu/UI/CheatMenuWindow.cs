@@ -20,7 +20,7 @@ namespace CaptainOfIndustryMods.CheatMenu.UI
 
         public CheatMenuWindow(AllImplementationsOf<ICheatProviderTab> cheatTabs) : base("CheatMenu")
         {
-            _cheatTabs = cheatTabs.Implementations;
+            _cheatTabs = cheatTabs.Implementations.OrderBy(x => x.Name).ToImmutableArray();
             CheatMenuLogger.Log.Info($"Found {_cheatTabs.Length} cheat tabs");
         }
 

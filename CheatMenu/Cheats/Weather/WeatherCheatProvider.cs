@@ -8,9 +8,9 @@ using Mafi.Core;
 using Mafi.Core.Environment;
 using Mafi.Core.Prototypes;
 
-namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
+namespace CaptainOfIndustryMods.CheatMenu.Cheats.Weather
 {
-    public class WeatherCheatProvider : ICheatProvider
+    public class WeatherCheatProvider
     {
         private readonly Mafi.Lazy<Lyst<ICheatCommandBase>> _lazyCheats;
         private readonly ProtosDb _protosDb;
