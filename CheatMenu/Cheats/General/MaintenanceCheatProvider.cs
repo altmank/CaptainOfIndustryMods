@@ -10,9 +10,17 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
 {
     public class MaintenanceCheatProvider : ICheatProvider
     {
-        private readonly MaintenanceManager _maintenanceManager;
         private readonly Mafi.Lazy<Lyst<ICheatCommandBase>> _lazyCheats;
+        private readonly MaintenanceManager _maintenanceManager;
         private FieldInfo _maintenanceDisabledField;
+
+
+        public MaintenanceCheatProvider(MaintenanceManager maintenanceManager)
+        {
+            _maintenanceManager = maintenanceManager;
+            _lazyCheats = new Mafi.Lazy<Lyst<ICheatCommandBase>>(GetCheats);
+        }
+
         public Lyst<ICheatCommandBase> Cheats => _lazyCheats.Value;
 
         private void SetAccessors()
@@ -29,20 +37,14 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
                 BindingFlags.NonPublic | BindingFlags.Instance);
         }
 
-
-        public MaintenanceCheatProvider(MaintenanceManager maintenanceManager)
-        {
-            _maintenanceManager = maintenanceManager;
-            _lazyCheats = new Mafi.Lazy<Lyst<ICheatCommandBase>>(GetCheats);
-        }
-
         private Lyst<ICheatCommandBase> GetCheats()
         {
             return new Lyst<ICheatCommandBase>
             {
                 new CheatToggleCommand(
-                    "Maintenance",
-                    ToggleMaintenance, IsToggleEnabled){Tooltip = "Set Maintenance off (left) or on (right). If on, then your settlement will consume maintenance resources. If off, all consumption of maintenance will stop."}
+                        "Maintenance",
+                        ToggleMaintenance, IsToggleEnabled)
+                    { Tooltip = "Set Maintenance off (left) or on (right). If on, then your settlement will consume maintenance resources. If off, all consumption of maintenance will stop." }
             };
         }
 

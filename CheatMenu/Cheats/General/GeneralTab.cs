@@ -17,7 +17,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
     public class GeneralTab : Tab, ICheatProviderTab
     {
         private readonly Dict<string, Lyst<ICheatCommandBase>> _cheatItems;
-        private Dict<SwitchBtn, Func<bool>> _switchBtns = new Dict<SwitchBtn, Func<bool>>();
+        private readonly Dict<SwitchBtn, Func<bool>> _switchBtns = new Dict<SwitchBtn, Func<bool>>();
 
         public GeneralTab(AllImplementationsOf<ICheatProvider> cheatProviders) : base(nameof(GeneralTab), SyncFrequency.OncePerSec)
         {
@@ -25,6 +25,9 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
                 .Select(x => new KeyValuePair<string, Lyst<ICheatCommandBase>>(x.GetType().Name, x.Cheats))
                 .ToDict();
         }
+
+        public string Name => "General";
+        public string IconPath => "Assets/Unity/UserInterface/Toolbar/Settlement.svg";
 
         public override void RenderUpdate(GameTime gameTime)
         {
@@ -40,14 +43,8 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
 
         private void RefreshValues()
         {
-            foreach (var (switchBtn, enable) in _switchBtns)
-            {
-                switchBtn.SetState(enable());
-            }
+            foreach (var (switchBtn, enable) in _switchBtns) switchBtn.SetState(enable());
         }
-
-        public string Name => "General";
-        public string IconPath => "Assets/Unity/UserInterface/Toolbar/Settlement.svg";
 
         protected override void BuildUi()
         {
@@ -71,33 +68,30 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
                 buttonGroupContainer.AppendTo(buttonsContainer, buttonGroupContainer.GetDynamicHeight());
 
                 foreach (var cheatItem in cheat.Value)
-                {
                     switch (cheatItem)
                     {
                         case CheatToggleCommand toggleCommand:
                             CreateCheatToggleSwitch(cheatItem, toggleCommand, buttonGroupContainer);
                             break;
-                        case CheatCommand cheatCommand:
+                        case CheatButtonCommand cheatCommand:
                         {
                             CreateCheatButton(cheatItem, cheatCommand, buttonGroupContainer);
                             break;
                         }
                     }
-                }
             }
-            
+
             RefreshValues();
         }
 
-        private void CreateCheatButton(ICheatCommandBase cheatItem, CheatCommand cheatCommand, StackContainer buttonGroupContainer)
+        private void CreateCheatButton(ICheatCommandBase cheatItem, CheatButtonCommand cheatButtonCommand, StackContainer buttonGroupContainer)
         {
             var btn = Builder.NewBtn("button")
                 .SetButtonStyle(Style.Global.GeneralBtn)
                 .SetText(new LocStrFormatted(cheatItem.Title))
                 .AddToolTip(cheatItem.Tooltip)
-                .OnClick(cheatCommand.Action);
+                .OnClick(cheatButtonCommand.Action);
             btn.AppendTo(buttonGroupContainer, btn.GetOptimalSize(), ContainerPosition.MiddleOrCenter);
-          
         }
 
         private void CreateCheatToggleSwitch(ICheatCommandBase cheatItem, CheatToggleCommand toggleCommand, StackContainer buttonGroupContainer)
@@ -106,10 +100,9 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
                 .SetText(cheatItem.Title)
                 .AddTooltip(new LocStrFormatted(cheatItem.Tooltip))
                 .SetOnToggleAction(toggleCommand.Action);
-                
-            toggleBtn.AppendTo(buttonGroupContainer,new Vector2(toggleBtn.GetWidth(), 25), ContainerPosition.MiddleOrCenter);
+
+            toggleBtn.AppendTo(buttonGroupContainer, new Vector2(toggleBtn.GetWidth(), 25), ContainerPosition.MiddleOrCenter);
             _switchBtns.Add(toggleBtn, toggleCommand.IsToggleEnabled);
-            
         }
     }
 }

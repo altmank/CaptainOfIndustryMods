@@ -46,21 +46,21 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Weather
         {
             return new Lyst<ICheatCommandBase>
             {
-                new CheatCommand(
+                new CheatButtonCommand(
                     "Reset weather",
                     () =>
                     {
                         SetWeatherAccessors();
                         SetWeather(Ids.Weather.Sunny, true);
                     }),
-                new CheatCommand(
+                new CheatButtonCommand(
                     "Sunny weather",
                     () =>
                     {
                         SetWeatherAccessors();
                         SetWeather(Ids.Weather.Sunny);
                     }),
-                new CheatCommand(
+                new CheatButtonCommand(
                     "Cloudy weather",
                     () =>
                     {
@@ -68,14 +68,14 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Weather
                         SetWeather(Ids.Weather.Cloudy);
                     }),
 
-                new CheatCommand(
+                new CheatButtonCommand(
                     "Rainy weather",
                     () =>
                     {
                         SetWeatherAccessors();
                         SetWeather(Ids.Weather.Rainy);
                     }),
-                new CheatCommand(
+                new CheatButtonCommand(
                     "Heavy rain weather",
                     () =>
                     {

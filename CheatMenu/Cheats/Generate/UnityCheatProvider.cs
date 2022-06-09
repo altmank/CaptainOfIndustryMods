@@ -2,9 +2,7 @@
 using System.Reflection;
 using CaptainOfIndustryMods.CheatMenu.Logging;
 using Mafi;
-using Mafi.Base;
 using Mafi.Core;
-using Mafi.Core.Factory.ElectricPower;
 using Mafi.Core.Population;
 
 namespace CaptainOfIndustryMods.CheatMenu.Cheats.Generate
@@ -36,7 +34,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Generate
         {
             SetAccessors();
             //Not yet working in UPointsManager code
-            _freeUnityPerMonthField.SetValue(_upointsManager,  new Upoints(uPoints));
+            _freeUnityPerMonthField.SetValue(_upointsManager, new Upoints(uPoints));
         }
     }
 }

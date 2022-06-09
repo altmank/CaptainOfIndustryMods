@@ -23,16 +23,16 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
         {
             return new Lyst<ICheatCommandBase>
             {
-                new CheatCommand(
+                new CheatButtonCommand(
                     "Vehicle Limit Add 100",
                     () => _vehiclesManager.IncreaseVehicleLimit(100)),
-                new CheatCommand(
+                new CheatButtonCommand(
                     "Vehicle Limit Remove 100",
                     () => _vehiclesManager.IncreaseVehicleLimit(-100)),
-                new CheatCommand(
+                new CheatButtonCommand(
                     "Vehicle Limit Add 10",
                     () => _vehiclesManager.IncreaseVehicleLimit(10)),
-                new CheatCommand(
+                new CheatButtonCommand(
                     "Vehicle Limit Remove 10",
                     () => _vehiclesManager.IncreaseVehicleLimit(-10))
             };

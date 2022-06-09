@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using CaptainOfIndustryMods.CheatMenu.Cheats.General;
 using CaptainOfIndustryMods.CheatMenu.Config;
 using Mafi;
 using Mafi.Collections;
@@ -18,12 +16,15 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Weather
     public class WeatherTab : Tab, ICheatProviderTab
     {
         private readonly WeatherCheatProvider _weatherCheatProvider;
-        private Dict<SwitchBtn, Func<bool>> _switchBtns = new Dict<SwitchBtn, Func<bool>>();
+        private readonly Dict<SwitchBtn, Func<bool>> _switchBtns = new Dict<SwitchBtn, Func<bool>>();
 
         public WeatherTab(NewInstanceOf<WeatherCheatProvider> weatherCheatProvider) : base(nameof(WeatherTab), SyncFrequency.OncePerSec)
         {
             _weatherCheatProvider = weatherCheatProvider.Instance;
         }
+
+        public string Name => "Weather";
+        public string IconPath => "Assets/Unity/UserInterface/Toolbar/WorldMap.svg";
 
         public override void RenderUpdate(GameTime gameTime)
         {
@@ -39,14 +40,8 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Weather
 
         private void RefreshValues()
         {
-            foreach (var (switchBtn, enable) in _switchBtns)
-            {
-                switchBtn.SetState(enable());
-            }
+            foreach (var (switchBtn, enable) in _switchBtns) switchBtn.SetState(enable());
         }
-
-        public string Name => "Weather";
-        public string IconPath => "Assets/Unity/UserInterface/Toolbar/WorldMap.svg";
 
         protected override void BuildUi()
         {
@@ -58,43 +53,40 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Weather
                 .SetInnerPadding(Offset.Top(20f) + Offset.Bottom(10f))
                 .PutToTopOf(this, 680f);
 
-                var buttonGroupContainer = Builder
-                    .NewStackContainer("Buttons container")
-                    .SetStackingDirection(StackContainer.Direction.LeftToRight)
-                    .SetSizeMode(StackContainer.SizeMode.StaticDirectionAligned)
-                    .SetItemSpacing(10f)
-                    .SetInnerPadding(Offset.All(10f));
+            var buttonGroupContainer = Builder
+                .NewStackContainer("Buttons container")
+                .SetStackingDirection(StackContainer.Direction.LeftToRight)
+                .SetSizeMode(StackContainer.SizeMode.StaticDirectionAligned)
+                .SetItemSpacing(10f)
+                .SetInnerPadding(Offset.All(10f));
 
-                buttonGroupContainer.AppendTo(buttonsContainer, buttonGroupContainer.GetDynamicHeight());
+            buttonGroupContainer.AppendTo(buttonsContainer, buttonGroupContainer.GetDynamicHeight());
 
-                foreach (var cheatItem in _weatherCheatProvider.Cheats)
+            foreach (var cheatItem in _weatherCheatProvider.Cheats)
+                switch (cheatItem)
                 {
-                    switch (cheatItem)
+                    case CheatToggleCommand toggleCommand:
+                        CreateCheatToggleSwitch(cheatItem, toggleCommand, buttonGroupContainer);
+                        break;
+                    case CheatButtonCommand cheatCommand:
                     {
-                        case CheatToggleCommand toggleCommand:
-                            CreateCheatToggleSwitch(cheatItem, toggleCommand, buttonGroupContainer);
-                            break;
-                        case CheatCommand cheatCommand:
-                        {
-                            CreateCheatButton(cheatItem, cheatCommand, buttonGroupContainer);
-                            break;
-                        }
+                        CreateCheatButton(cheatItem, cheatCommand, buttonGroupContainer);
+                        break;
                     }
                 }
-            
-            
+
+
             RefreshValues();
         }
 
-        private void CreateCheatButton(ICheatCommandBase cheatItem, CheatCommand cheatCommand, StackContainer buttonGroupContainer)
+        private void CreateCheatButton(ICheatCommandBase cheatItem, CheatButtonCommand cheatButtonCommand, StackContainer buttonGroupContainer)
         {
             var btn = Builder.NewBtn("button")
                 .SetButtonStyle(Style.Global.GeneralBtn)
                 .SetText(new LocStrFormatted(cheatItem.Title))
                 .AddToolTip(cheatItem.Tooltip)
-                .OnClick(cheatCommand.Action);
+                .OnClick(cheatButtonCommand.Action);
             btn.AppendTo(buttonGroupContainer, btn.GetOptimalSize(), ContainerPosition.MiddleOrCenter);
-          
         }
 
         private void CreateCheatToggleSwitch(ICheatCommandBase cheatItem, CheatToggleCommand toggleCommand, StackContainer buttonGroupContainer)
@@ -103,10 +95,9 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Weather
                 .SetText(cheatItem.Title)
                 .AddTooltip(new LocStrFormatted(cheatItem.Tooltip))
                 .SetOnToggleAction(toggleCommand.Action);
-                
-            toggleBtn.AppendTo(buttonGroupContainer,new Vector2(toggleBtn.GetWidth(), 25), ContainerPosition.MiddleOrCenter);
+
+            toggleBtn.AppendTo(buttonGroupContainer, new Vector2(toggleBtn.GetWidth(), 25), ContainerPosition.MiddleOrCenter);
             _switchBtns.Add(toggleBtn, toggleCommand.IsToggleEnabled);
-            
         }
     }
 }

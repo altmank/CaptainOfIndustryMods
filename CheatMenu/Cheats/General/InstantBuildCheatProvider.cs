@@ -14,7 +14,6 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
         private readonly Mafi.Lazy<Lyst<ICheatCommandBase>> _lazyCheats;
         private FieldInfo _instantBuildProperty;
 
-
         public InstantBuildCheatProvider(IInstaBuildManager instaBuildManager)
         {
             _instaBuildManager = instaBuildManager;
@@ -34,8 +33,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
                 throw new Exception("Unable to fetch the InstaBuildManager type.");
             }
 
-            _instantBuildProperty = instantBuildManager.GetField("<IsInstaBuildEnabled>k__BackingField",
-                BindingFlags.NonPublic | BindingFlags.Instance);
+            _instantBuildProperty = instantBuildManager.GetField("<IsInstaBuildEnabled>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance);
         }
 
         private Lyst<ICheatCommandBase> GetCheats()
@@ -47,7 +45,8 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
                     ToggleInstantMode,
                     IsToggleEnabled)
                 {
-                    Tooltip = "Set instant mode off (left) or on (right). Enables instant build, instant research, instant upgrades (shipyards, buildings, settlements, mines), instant vehicle construction, and instant repair when on"
+                    Tooltip =
+                        "Set instant mode off (left) or on (right). Enables instant build, instant research, instant upgrades (shipyards, buildings, settlements, mines), instant vehicle construction, and instant repair when on."
                 }
             };
         }

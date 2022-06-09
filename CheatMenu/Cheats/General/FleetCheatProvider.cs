@@ -23,9 +23,9 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
         {
             return new Lyst<ICheatCommandBase>
             {
-                new CheatCommand("Finish Exploration", () => _inputScheduler.ScheduleInputCmd(new ExploreFinishCheatCmd()))
+                new CheatButtonCommand("Finish Exploration", () => _inputScheduler.ScheduleInputCmd(new ExploreFinishCheatCmd()))
                     { Tooltip = "Set your ship to do an action and then press this button and they will complete it immediately" },
-                new CheatCommand("Repair Fleet", () => _inputScheduler.ScheduleInputCmd(new FleetRepairCheatCmd()))
+                new CheatButtonCommand("Repair Fleet", () => _inputScheduler.ScheduleInputCmd(new FleetRepairCheatCmd()))
             };
         }
     }

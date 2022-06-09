@@ -11,7 +11,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Generate
         {
             _computingManager = computingManager;
         }
-        
+
         public void SetFreeCompute(int tFLops)
         {
             _computingManager.Cheat_AddFreeComputingPerTick(Computing.FromTFlops(tFLops));

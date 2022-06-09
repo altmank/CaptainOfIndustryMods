@@ -18,8 +18,8 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Products
     public class ProductCheatTab : Tab, ICheatProviderTab
     {
         private readonly ProductCheatProvider _cheatProvider;
-        private readonly ProtosDb _protosDb;
         private readonly IEnumerable<ProductProto> _productProtos;
+        private readonly ProtosDb _protosDb;
         private float _quantity = 250;
         private ProductProto.ID? _selectedProduct;
 
@@ -64,7 +64,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Products
 
             spawnProductBtn.AppendTo(topOf, spawnProductBtn.GetOptimalSize(), ContainerPosition.LeftOrTop, Offset.Top(10f));
         }
-        
+
         private void BuildRemoveButton(StackContainer topOf)
         {
             var spawnProductBtn = Builder.NewBtn("button")
@@ -103,10 +103,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Products
                 .SimpleSlider(Builder.Style.Panel.Slider)
                 .SetValuesRange(10f, 10000f)
                 .OnValueChange(
-                    qty =>
-                    {
-                        sliderLabel.SetText(Math.Round(qty).ToString());
-                    },
+                    qty => { sliderLabel.SetText(Math.Round(qty).ToString()); },
                     qty =>
                     {
                         sliderLabel.SetText(Math.Round(qty).ToString());

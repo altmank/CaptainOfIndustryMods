@@ -13,13 +13,13 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Generate
     [GlobalDependency(RegistrationMode.AsEverything)]
     public class GenerateCheatTab : Tab, ICheatProviderTab
     {
-        private readonly UnityCheatProvider _unityCheatProvider;
         private readonly ComputingCheatProvider _computingCheatProvider;
         private readonly ElectricityCheatProvider _electricityCheatProvider;
-        private float _kwGen = 0;
-        private float _computingTFlopGen = 0;
-        private float _unityGen = 0;
-        private int _sliderWidth = 585;
+        private readonly UnityCheatProvider _unityCheatProvider;
+        private float _computingTFlopGen;
+        private float _kwGen;
+        private readonly int _sliderWidth = 585;
+        private float _unityGen;
 
         public GenerateCheatTab(
             NewInstanceOf<ElectricityCheatProvider> electricityCheatProvider,

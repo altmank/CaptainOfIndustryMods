@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using CaptainOfIndustryMods.CheatMenu.Config;
+﻿using CaptainOfIndustryMods.CheatMenu.Config;
 using CaptainOfIndustryMods.CheatMenu.Logging;
 using Mafi.Collections;
 using Mafi.Core.Input;
@@ -12,9 +11,9 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
     public class ResearchCheatProvider : ICheatProvider
     {
         private readonly IInputScheduler _inputScheduler;
+        private readonly IMessageNotificationsManager _messageNotificationsManager;
         private readonly ResearchManager _researchManager;
         private readonly UnlockedProtosDb _unlockedProtosDb;
-        private readonly IMessageNotificationsManager _messageNotificationsManager;
 
         public ResearchCheatProvider(IInputScheduler inputScheduler, ResearchManager researchManager, UnlockedProtosDb unlockedProtosDb, IMessageNotificationsManager messageNotificationsManager)
         {
@@ -26,8 +25,9 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
 
         public Lyst<ICheatCommandBase> Cheats => new Lyst<ICheatCommandBase>
         {
-            new CheatCommand("Finish Current Research", UnlockCurrentResearch) { Tooltip = "Start research, and then use this command to instantly complete it. You can also use Instant Mode to complete started research immediately." },
-            new CheatCommand("Unlock All Research", UnlockAllResearch) { Tooltip = "Unlocks all research including research that requires discoveries to research." }
+            new CheatButtonCommand("Finish Current Research", UnlockCurrentResearch)
+                { Tooltip = "Start research, and then use this command to instantly complete it. You can also use Instant Mode to complete started research immediately." },
+            new CheatButtonCommand("Unlock All Research", UnlockAllResearch) { Tooltip = "Unlocks all research including research that requires discoveries to research." }
         };
 
         private void UnlockCurrentResearch()
@@ -59,7 +59,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
                     _researchManager.Cheat_FinishCurrent();
                 }
             } while (_researchManager.AllNodes.Any(x => x.State == ResearchNodeState.Available));
-            
+
             _messageNotificationsManager.DismissAllNotifications();
         }
     }
