@@ -2,6 +2,7 @@
 using Mafi;
 using Mafi.Core.Syncers;
 using Mafi.Localization;
+using Mafi.Unity;
 using Mafi.Unity.InputControl;
 using Mafi.Unity.UiFramework;
 using Mafi.Unity.UiFramework.Components;
@@ -33,7 +34,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Generate
         }
 
         public string Name => "Generate";
-        public string IconPath => "Assets/Unity/UserInterface/Toolbar/Power.svg";
+        public string IconPath => Assets.Unity.UserInterface.Toolbar.Power_svg;
 
         protected override void BuildUi()
         {

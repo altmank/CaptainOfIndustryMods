@@ -6,6 +6,7 @@ using Mafi.Collections;
 using Mafi.Core;
 using Mafi.Core.Syncers;
 using Mafi.Localization;
+using Mafi.Unity;
 using Mafi.Unity.UiFramework;
 using Mafi.Unity.UiFramework.Components;
 using Mafi.Unity.UiFramework.Components.Tabs;
@@ -27,7 +28,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.General
         }
 
         public string Name => "General";
-        public string IconPath => "Assets/Unity/UserInterface/Toolbar/Settlement.svg";
+        public string IconPath => Assets.Unity.UserInterface.Toolbar.Settlement_svg;
 
         public override void RenderUpdate(GameTime gameTime)
         {

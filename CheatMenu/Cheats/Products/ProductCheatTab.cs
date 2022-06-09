@@ -6,6 +6,7 @@ using Mafi.Core.Products;
 using Mafi.Core.Prototypes;
 using Mafi.Core.Syncers;
 using Mafi.Localization;
+using Mafi.Unity;
 using Mafi.Unity.InputControl;
 using Mafi.Unity.UiFramework;
 using Mafi.Unity.UiFramework.Components;
@@ -32,7 +33,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Products
         }
 
         public string Name => "Products";
-        public string IconPath => "Assets/Unity/UserInterface/Toolbar/CargoShip.svg";
+        public string IconPath => Assets.Unity.UserInterface.Toolbar.CargoShip_svg;
 
         protected override void BuildUi()
         {

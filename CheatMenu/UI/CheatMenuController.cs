@@ -24,11 +24,11 @@ namespace CaptainOfIndustryMods.CheatMenu.UI
 
         public override void RegisterUi(UiBuilder builder)
         {
-            _toolbarController.AddMainMenuButton("Cheat Menu", this, "Assets/Unity/UserInterface/Toolbar/Power.svg", 1337f, manager => KeyBindings.FromKey(KbCategory.Tools, KeyCode.F8));
+            _toolbarController.AddMainMenuButton("Cheat Menu", this, Assets.Unity.UserInterface.Toolbar.Power_svg, 1337f, _ => KeyBindings.FromKey(KbCategory.Tools, KeyCode.F8));
             base.RegisterUi(builder);
         }
 
-        public bool IsVisible { get; }
+        public bool IsVisible => true;
         public event Action<IToolbarItemInputController> VisibilityChanged;
     }
 }

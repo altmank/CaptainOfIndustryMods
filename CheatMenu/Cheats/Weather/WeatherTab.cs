@@ -5,6 +5,7 @@ using Mafi.Collections;
 using Mafi.Core;
 using Mafi.Core.Syncers;
 using Mafi.Localization;
+using Mafi.Unity;
 using Mafi.Unity.UiFramework;
 using Mafi.Unity.UiFramework.Components;
 using Mafi.Unity.UiFramework.Components.Tabs;
@@ -24,7 +25,7 @@ namespace CaptainOfIndustryMods.CheatMenu.Cheats.Weather
         }
 
         public string Name => "Weather";
-        public string IconPath => "Assets/Unity/UserInterface/Toolbar/WorldMap.svg";
+        public string IconPath => Assets.Unity.UserInterface.Toolbar.WorldMap_svg;
 
         public override void RenderUpdate(GameTime gameTime)
         {
