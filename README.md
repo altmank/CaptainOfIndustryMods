@@ -1,3 +1,6 @@
+This mod has been deprecated and a new repo was setup at https://github.com/altmank/CaptainOfCheats
+This repo will remain for a period just to allow for some limited save game compatibility
+
 ## Installation
 You can download the mods archive from the GitHub Release section and you need to extract it in the %USERPROFILE%\Documents\Captain of Industry\Mods directory. Note that you must keep the directory structure for them to work (eg. the CheatMenu.dll file must reside in the CheatMenu directory).
 
