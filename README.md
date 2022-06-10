@@ -1,4 +1,4 @@
-This mod has been deprecated and a new repo was setup at https://github.com/altmank/CaptainOfCheats
+This mod has been deprecated (to disconnect it from the legacy CheatMenu name) and a new repo was setup at https://github.com/altmank/CaptainOfCheats
 This repo will remain for a period just to allow for some limited save game compatibility
 
 ## Installation
